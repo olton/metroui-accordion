@@ -1,0 +1,77 @@
+:root {
+    --borderColor: #c0c0c0;
+    --accordionDefaultBackground: #ffffff;
+    --accordionDefaultColor: #000000;
+    --accordionTriangleColor: #acacac;
+    --accordionDisabledColor: rgb(178, 178, 178);
+}
+
+.accordion {
+    display: block;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.accordion-frame {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    background-color: var(--accordionDefaultBackground);
+    margin: 4px 0;
+}
+
+.accordion-frame-heading {
+    position: relative;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: start;
+    border: 1px solid var(--borderColor);
+    padding: 10px;
+    cursor: pointer;
+    user-select: none;
+    z-index: 2;
+    background-color: #ffffff;
+
+    &::before {
+        font-family: monospace;
+        display: flex;
+        position: absolute;
+        content: "\203A";
+        z-index: 3;
+        right: 10px;
+        transform: rotate(90deg);
+        transform-origin: center;
+        transition: transform .3s linear;
+        color: var(--accordionTriangleColor);
+        font-size: 20px;
+        line-height: 1;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &.disabled {
+        pointer-events: none;
+        color: var(--accordionDisabledColor);
+    }
+}
+
+.accordion-frame-content {
+    display: block;
+    position: relative;
+    padding: 0;
+    margin: 0;
+    transition: height .2s linear;
+    z-index: 1;
+}
+
+.accordion-frame.frame-open {
+    .accordion-frame-heading {
+        &::before {
+            transform: rotate(-90deg);
+        }
+    }
+    .accordion-frame-content {
+        display: block;
+    }
+}
