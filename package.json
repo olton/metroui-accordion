@@ -1,7 +1,7 @@
 {
   "name": "@metroui/accordion",
   "description": "Metro UI Accordion Component for React (Vite, TypeScript)",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "license": "MIT",
   "author": "Serhii Pimenov <serhii@pimenov.com.ua> (https://pimenov.com.ua)",
   "keywords": [
