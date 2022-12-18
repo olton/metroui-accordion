@@ -1,6 +1,6 @@
 import React, {FC, MouseEventHandler} from "react";
 import classNames from "classnames";
-import AnimateHeight from "react-animate-height";
+import AnimateHeight, {Height} from "react-animate-height";
 
 interface IFrameProps {
     children: React.ReactNode,
@@ -11,6 +11,7 @@ interface IFrameProps {
     onClick: MouseEventHandler,
     index: number,
     duration?: number,
+    frameHeight: Height
 }
 
 const Frame: FC<IFrameProps> = ({
@@ -22,6 +23,7 @@ const Frame: FC<IFrameProps> = ({
     index,
     duration,
     disabled = false,
+    frameHeight= "auto",
     ...props
 }) => {
     const classes = classNames(
@@ -33,7 +35,7 @@ const Frame: FC<IFrameProps> = ({
     return (
         <div className={classes} {...props} data-index={index}>
             <div className={`accordion-frame-heading ${disabled ? "disabled" : ""}`} onClick={onClick}>{caption}</div>
-            <AnimateHeight height={open ? "auto" : 0} duration={duration}>
+            <AnimateHeight height={open ? frameHeight : 0} duration={duration}>
                 <div className="accordion-frame-content">{children}</div>
             </AnimateHeight>
         </div>

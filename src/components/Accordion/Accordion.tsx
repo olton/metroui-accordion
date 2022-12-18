@@ -1,6 +1,5 @@
 import React, {Children, cloneElement, MouseEventHandler} from "react";
 import classNames from "classnames";
-
 import "./Accordion.less"
 import Frame from "./Frame";
 
@@ -13,7 +12,8 @@ interface IAccordionProps {
     opened: number[],
     mode: ACCORDION_MODE.SINGLE_FRAME,
     children: React.ReactNode,
-    duration: number
+    duration: number,
+    frameHeight: any
 }
 
 interface IAccordionState {
@@ -64,7 +64,7 @@ class Accordion extends React.Component<IAccordionProps, IAccordionState> {
     }
 
     render(){
-        const {duration = 300, children, ...props} = this.props
+        const {frameHeight = "auto", duration = 300, children, ...props} = this.props
         const {opened} = this.state
         const classes = classNames(
             "accordion",
@@ -79,7 +79,8 @@ class Accordion extends React.Component<IAccordionProps, IAccordionState> {
                         onClick: this.handleClick,
                         index,
                         duration,
-                        disabled: el.props.disabled
+                        disabled: el.props.disabled,
+                        frameHeight,
                     }
 
                     return (
